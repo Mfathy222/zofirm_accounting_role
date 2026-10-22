@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <function model="ir.rule" name="zofirm_cleanup_legacy_active_company_rules"/>
+</odoo>

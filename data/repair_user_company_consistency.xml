@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Run on install and every module upgrade. The method is idempotent. -->
+    <function model="res.users" name="_zofirm_repair_default_company_access"/>
+</odoo>

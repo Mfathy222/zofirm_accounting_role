@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--
+        IMPORTANT MULTI-COMPANY DESIGN
+        ==============================
+        Do NOT add global active-company rules on account.move/account.move.line.
+        Odoo's native accounting rules already use the allowed-company context
+        (company_ids).  This module scopes the Accounting UI to one company by
+        passing allowed_company_ids=[active company] through Accounting actions.
+        That preserves Odoo's native ORM / drill-down / report behavior.
+    -->
+
+    <!-- Accounting Administrator can open every company from the Companies menu.
+         The existing res.company.user_ids field controls which users are actually
+         assigned to each company. -->
+    <record id="rule_res_company_account_admin_all" model="ir.rule">
+        <field name="name">Accounting Administrator: all companies</field>
+        <field name="model_id" ref="base.model_res_company"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('account.group_account_manager'))]"/>
+    </record>
+</odoo>

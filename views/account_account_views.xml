@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_account_form_zofirm_active_company" model="ir.ui.view">
+        <field name="name">account.account.form.zofirm.active.company</field>
+        <field name="model">account.account</field>
+        <field name="inherit_id" ref="account.view_account_form"/>
+        <field name="arch" type="xml">
+            <!-- Accounting is active-company-only in this module.  The native
+                 Mapping tab is a multi-company editor and causes Odoo to call
+                 account.account.with_company(other_company).write(code).
+                 Remove it so a COA form can never write another company. -->
+            <xpath expr="//page[@name='mapping']" position="replace"/>
+
+            <xpath expr="//field[@name='company_ids']" position="attributes">
+                <attribute name="readonly">1</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

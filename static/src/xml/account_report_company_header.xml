@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserve">
+    <t t-name="zofirm_accounting_role.AccountReportHeaderCompanyName"
+       t-inherit="account_reports.AccountReportHeaderCustomizable"
+       t-inherit-mode="extension">
+        <!-- Odoo hides the company label when a report contains one company.
+             Accounting is intentionally scoped to one active company, so show
+             that one company name without changing Odoo's native multi-company
+             header behavior outside this scoped action. -->
+        <xpath expr="//tr[@data-id='column_headers_row']/th[1]/t[@t-if='columnHeader_first and controller.options.companies.length &gt; 1']" position="after">
+            <t t-if="columnHeader_first and controller.options.zofirm_show_active_company_name and controller.options.companies.length == 1">
+                <span class="companies_header" t-out="controller.options.companies[0].name"/>
+            </t>
+        </xpath>
+    </t>
+</templates>
